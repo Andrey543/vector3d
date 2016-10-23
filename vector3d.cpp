@@ -38,3 +38,41 @@ bool vector3d::operator!=(vector3d v)
     return (x!=v.x or y!=v.y or z!=v.z);
 }
 
+
+double vector3d::lenght()
+{
+    return std::sqrt(x*x+y*y+z*z)
+}
+
+double vector3d::operator*(vector3d v)
+{
+    return x*v.x+y*v.y+z*v.z   
+}
+
+vector3d vector3d::operator*(int a)
+{
+    return vector3d(x*a,y*a,z*a)
+}
+
+vector3d vector3d::operator*(int a, vector3d v)
+{
+    return vector3d(a*v.x,a*v.y,a*v.z)
+}
+
+vector3d vector3d::normalize()
+{
+    return vector3d(x/lenght(),y/lenght(),z/lenght())
+}
+
+vector3d vector3d::operator^(vector3d v)
+{
+    return vector3d(y*v.z-z*v.y,x*v.z-z*v.x,x*v.y-y*v.x)
+}
+
+ostream& vector3d::operator<<()
+{
+    os << "{" << x << "," << y << "," << x << "}"
+    return os;
+}
+
+
