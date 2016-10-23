@@ -23,6 +23,13 @@ public:
     vector3d operator-(vector3d v);
     bool operator==(vector3d v);
     bool operator!=(vector3d v);
+    double lenght();
+    double operator*(vector3d v);
+    vector3d operator*(int a);
+    vector3d operator*(int a, vector3d v);
+    vector3d normalize();
+    vector3d operator^(vector3d v);
+    ostream& operator<<();
 
 
 };
