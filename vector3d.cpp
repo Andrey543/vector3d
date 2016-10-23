@@ -38,5 +38,3 @@ bool vector3d::operator!=(vector3d v)
     return (x!=v.x or y!=v.y or z!=v.z);
 }
 
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Se
