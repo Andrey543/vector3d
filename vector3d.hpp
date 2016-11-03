@@ -11,29 +11,35 @@ public:
     const static vector3d ZERO;
 
 
-    int x;
-    int y;
-    int z;
+    double x;
+    double y;
+    double z;
 
 
 
     vector3d();
-    vector3d(int x,int y, int z);
-    vector3d operator+(vector3d v);
-    vector3d operator-(vector3d v);
-    bool operator==(vector3d v);
-    bool operator!=(vector3d v);
-    double lenght();
-    double operator*(vector3d v);
-    vector3d operator*(int a);
-    vector3d operator*(int a, vector3d v);
+    vector3d(double x,double y, double z);
+    vector3d operator+(const vector3d v)const;
+    vector3d operator-(const vector3d v)const;
+    bool operator==(const vector3d v)const;
+    bool operator!=(const vector3d v)const;
+    double length();
+    double operator*(const vector3d v)const;
+    vector3d operator*(int a)const;
+    vector3d operator-()const;
     vector3d normalize();
-    vector3d operator^(vector3d v);
-    ostream& operator<<();
+    vector3d operator^(const vector3d v)const;
+
 
 
 };
 
+vector3d operator*(int a, const  vector3d  v);
+std::ostream &operator<<(std::ostream &stream, const vector3d &v);
+
+
+
 // TODO: дописать
 
 #endif
+
