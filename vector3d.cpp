@@ -10,9 +10,9 @@ const vector3d vector3d::ZERO = {0, 0, 0};
 vector3d::vector3d():x(0),y(0),z(0){}
 
 
-vector3d::vector3d(int x, int y, int z):x(x),y(y),z(z){}
+vector3d::vector3d(double x, double y, double z):x(x),y(y),z(z){}
 
-vector3d vector3d::operator+(vector3d v)
+vector3d vector3d::operator+(const vector3d v)const
 {
     int rezult_x=x+v.x;
     int rezult_y=y+v.y;
@@ -20,7 +20,7 @@ vector3d vector3d::operator+(vector3d v)
     return vector3d(rezult_x,rezult_y,rezult_z);
 }
 
-vector3d vector3d::operator-(vector3d v)
+vector3d vector3d::operator-(const vector3d v)const
 {
     int rezult_x=x-v.x;
     int rezult_y=y-v.y;
@@ -28,51 +28,61 @@ vector3d vector3d::operator-(vector3d v)
     return vector3d(rezult_x,rezult_y,rezult_z);
 }
 
-bool vector3d::operator==(vector3d v)
+bool vector3d::operator==(const vector3d v)const
 {
     return (x==v.x and y==v.y and z==v.z);
 }
 
-bool vector3d::operator!=(vector3d v)
+bool vector3d::operator!=(const vector3d v)const
 {
     return (x!=v.x or y!=v.y or z!=v.z);
 }
 
 
-double vector3d::lenght()
+double vector3d::length()
 {
-    return std::sqrt(x*x+y*y+z*z)
+    return std::sqrt(x*x+y*y+z*z);
 }
 
-double vector3d::operator*(vector3d v)
+double vector3d::operator*(const vector3d v)const
 {
     return x*v.x+y*v.y+z*v.z; 
 }
 
-vector3d vector3d::operator*(int a)
+vector3d vector3d::operator*(int a)const
 {
     return vector3d(x*a,y*a,z*a);
 }
 
-vector3d vector3d::operator*(int a, vector3d v)
+vector3d operator*(int a, const vector3d v)
 {
     return vector3d(a*v.x,a*v.y,a*v.z);
 }
 
+vector3d vector3d::operator-()const
+{
+    return vector3d(-x,-y,-z);
+}
+
 vector3d vector3d::normalize()
 {
-    return vector3d(x/lenght(),y/lenght(),z/lenght());
+    double len=length();
+    x=x/len;
+    y=y/len;
+    z=z/len;
 }
 
-vector3d vector3d::operator^(vector3d v)
+vector3d vector3d::operator^(const vector3d v)const
 {
-    return vector3d(y*v.z-z*v.y,x*v.z-z*v.x,x*v.y-y*v.x);
+    return vector3d(y*v.z-z*v.y,z*v.x-x*v.z,x*v.y-y*v.x);
 }
 
-ostream& vector3d::operator<<()
+std::ostream &operator<<(std::ostream &stream, const vector3d &v)
 {
-    os << "{" << x << "," << y << "," << x << "}"
-    return os;
+
+    return stream << "{" << v.x << ", " << v.y << ", " << v.z << "}";
 }
+
+
 
 
